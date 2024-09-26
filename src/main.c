@@ -8,7 +8,7 @@
 #define write_str(fd, str) write(fd, str, strlen(str))
 
 char ascii_logo[] = 
-    "     ___    \n"
+    "      ___    \n"
     "     (. ·|   \n"
     "     (<> |   \n"
     "    / __  \\  \n"
@@ -37,7 +37,7 @@ int main() {
                 char *distro = strtok(line, "=");
                 distro = strtok(NULL, "=");
                 write_str(fd, "\n");
-                write_str(fd, "Distro: ");
+                write_str(fd, "os: ");
                 write_str(fd, distro);
                 break;
             }
@@ -47,12 +47,12 @@ int main() {
     close(osrelease);
 
     // Kernel version
-    write_str(fd, "\nKernel: ");
+    write_str(fd, "\nke: ");
     write_str(fd, kernel.release);
     write_str(fd, "\n");
 
     // Uptime
-    write_str(fd, "Uptime: ");
+    write_str(fd, "up: ");
     int puptime = open("/proc/uptime", O_RDONLY);
     char uptime_buf[128];
     double uptime;
@@ -95,7 +95,7 @@ int main() {
     close(meminfo);
 
     char mem_str[128];
-    snprintf(mem_str, sizeof(mem_str), "Memory: %.2fGiB / %.2fGiB\n\n\x1b[0m", 
+    snprintf(mem_str, sizeof(mem_str), "me: %.2fGiB / %.2fGiB\n\n\x1b[0m", 
              (double)(total_memory - free_memory) / 1048576, 
              (double)total_memory / 1048576);
     write_str(fd, mem_str);
