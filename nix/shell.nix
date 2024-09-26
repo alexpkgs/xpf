@@ -1,4 +1,4 @@
-{ mkShell, gnumake, strlx }:
+{ mkShell, gnumake, xpf }:
 mkShell {
   name = "xpf-dev";
   inputsFrom = [
